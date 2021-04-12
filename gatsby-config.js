@@ -33,10 +33,25 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
-        'molecules': path.join(__dirname, 'src/components/molecules'),
-        'root': path.join(__dirname, 'src')
+        '@atoms': path.join(__dirname, 'src/components/atoms'),
+        '@molecules': path.join(__dirname, 'src/components/molecules'),
+        '@organisms': path.join(__dirname, 'src/components/organisms'),
+        '@data': path.join(__dirname, 'src/data'),
+        '@root': path.join(__dirname, 'src'),
+        '@icons': path.join(__dirname, 'src/icons')
       }
-    }
+    },
+    `gatsby-plugin-scroll-indicator`,
+    // {
+    //   resolve: `gatsby-plugin-alias-imports`,
+    //   options: {
+    //     alias: {
+    //       "@data": path.resolve(__dirname, "src/data"),
+    //       "@molecules": path.resolve(__dirname, "src/components/molecules"),
+    //     },
+    //     extensions: ["js"]
+    //   }
+    // }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

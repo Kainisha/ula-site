@@ -1,13 +1,11 @@
 import React from 'react';
+import HeaderLink from '@atoms/HeaderLink'
 import { HeaderStyled } from './styles'
-import HeaderLink from 'molecules/HeaderLink'
 
-const Header = () => {
-    return (
-        <HeaderStyled>
-            <HeaderLink text="Doświadczenie" />
-        </HeaderStyled>
-    )
-};
+const Header = () => (
+  <HeaderStyled>
+    <HeaderLink text="Doświadczenie" to="experience"/>
+  </HeaderStyled>
+);
 
 export default Header;

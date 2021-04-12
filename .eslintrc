@@ -1,0 +1,51 @@
+{
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb",
+        "prettier"
+    ],
+    "plugins": [
+      "react"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "jest": true,
+      "browser": true,
+      "commonjs": true,
+      "es6": true
+    },
+    "globals": {
+      "document": true
+    },
+    "rules": {
+      "react/forbid-prop-types": 0,
+      "react/jsx-props-no-spreading": 0,
+      "react/jsx-filename-extension": 0,
+      "import/prefer-default-export": 0,
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error"
+    },
+    "settings": {
+      "import/resolver": {
+        "alias": {
+          "map": [
+            ["@atoms", "./src/components/atoms"],
+            ["@molecules", "./src/components/molecules"],
+            ["@organisms", "./src/components/organisms"],
+            ["@data", "./src/data"],
+            ["@root", "./src"],
+            ["@icons", "./src/icons"]
+          ],
+          "extensions": [".js", ".jsx"]
+        },
+        "node": {
+          "paths": ["src"],
+          "extensions": [".js", ".jsx", ".css"]
+        }
+      }
+    }
+}

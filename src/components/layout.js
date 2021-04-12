@@ -1,60 +1,48 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-import { ThemeProvider } from 'styled-components'
+import theme from '@root/theme';
+import LocomotiveScroll from 'locomotive-scroll';
+import GlobalStyles from '@root/globalStyles';
+import Header from './organisms/Header';
+import SEO from './seo';
+import { MainStyled } from './styles';
+import './layout.css';
+import '../fonts.css';
 
-import Header from "./organisms/Header"
-import { MainStyled } from './styles'
-import theme from 'root/theme'
-import GlobalStyles from 'root/globalStyles'
-import "./layout.css"
-
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
+const Layout = ({ children, title }) => {
+  useEffect(() => {
+    if (typeof document === 'undefined' || typeof window.document === 'undefined') {
+      return;
     }
-  `)
+
+    LocomotiveScroll({
+      el: document.querySelector('[data-scroll-container]'),
+      smooth: true,
+      multiplier: 3,
+    });
+  }, []);
 
   return (
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0 1.0875rem 1.45rem`,
-          }}
-        >
-          <MainStyled>
-            { children }
-          </MainStyled>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
-        </div>
+        <SEO title={title} />
+        <Header />
+        <MainStyled data-scroll-container>{children}</MainStyled>
       </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+  title: PropTypes.string,
+};
 
-export default Layout
+Layout.defaultProps = {
+  title: '',
+};
+
+export default Layout;
